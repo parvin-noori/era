@@ -7,9 +7,9 @@ $(document).ready(function () {
     activeSectionPosition(eraSection);
     configNextElement(eraSection);
     configPrevElement(eraSection);
-    configSectionPositions(eraSection,index);
+    configSectionPositions(eraSection, index);
 
-    eraSection.attr('data-index', index);
+    eraSection.attr("data-index", index);
   });
 
   function activeSectionPosition(element) {
@@ -38,7 +38,7 @@ $(document).ready(function () {
     }
   }
 
-  function configSectionPositions(element,index) {
+  function configSectionPositions(element, index) {
     if (element.hasClass("horiz")) {
       applyTranslateToHorizSections();
     } else {
@@ -57,11 +57,19 @@ $(document).ready(function () {
 
   function applyTranslateToVerticalSections(index) {
     const $verticalEraSections = $(".era-section.vertical");
-    const $activeEraSectionIndex = $(".era-section.active").data('index');
+    const $activeEraSectionIndex = $(".era-section.active").data("index");
 
+
+    // $verticalEraSections.each(function () {
+    //   if (index < $activeEraSectionIndex) {
+    //     console.log($verticalEraSections[index]);
+    //   }
+    // });
+    // const translateYValue = (activeIndex - index) * window.outerHeight;
+    // $verticalEraSections[index].css('transform', `translateY(${translateYValue}px)`);
     // if ($eraSections.length) {
-      // $eraSections.first().addClass("translate-y-[102%]");
-      // $eraSections.last().addClass("-translate-y-[102%]");
+    // $eraSections.first().addClass("translate-y-[102%]");
+    // $eraSections.last().addClass("-translate-y-[102%]");
     // }
   }
 
