@@ -1,13 +1,15 @@
 $(document).ready(function () {
   const eraSections = $(".era-section");
 
-  eraSections.each(function () {
+  eraSections.each(function (index) {
     const eraSection = $(this);
 
     activeSectionPosition(eraSection);
     configNextElement(eraSection);
     configPrevElement(eraSection);
-    configSectionPositions(eraSection);
+    configSectionPositions(eraSection,index);
+
+    eraSection.attr('data-index', index);
   });
 
   function activeSectionPosition(element) {
@@ -36,11 +38,11 @@ $(document).ready(function () {
     }
   }
 
-  function configSectionPositions(element) {
+  function configSectionPositions(element,index) {
     if (element.hasClass("horiz")) {
       applyTranslateToHorizSections();
     } else {
-      applyTranslateToVerticalSections();
+      applyTranslateToVerticalSections(index);
     }
   }
 
@@ -53,15 +55,15 @@ $(document).ready(function () {
     }
   }
 
-  function applyTranslateToVerticalSections() {
-    const $eraSections = $(".era-section.vertical");
+  function applyTranslateToVerticalSections(index) {
+    const $verticalEraSections = $(".era-section.vertical");
+    const $activeEraSectionIndex = $(".era-section.active").data('index');
 
-    if ($eraSections.length) {
+    // if ($eraSections.length) {
       // $eraSections.first().addClass("translate-y-[102%]");
       // $eraSections.last().addClass("-translate-y-[102%]");
-    }
+    // }
   }
 
   var windowHeight = window.innerHeight;
-  console.log(windowHeight);
 });
