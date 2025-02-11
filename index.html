@@ -7,22 +7,31 @@
     <title>home</title>
     <!-- <link rel="icon" sizes="192x192" href="./assets/images/azino-logo.png" /> -->
     <link rel="stylesheet" href="./assets/css/tailwind-output.css" />
-    <link rel="stylesheet" href="./assets/css/fullpage.min.css" />
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
     <script src="./assets/js/jquery-3.7.1.min.js"></script>
-    <!-- <script src="./assets/js/gsap.min.js"></script> -->
-    <!-- <script src="./assets/js/ScrollTrigger.min.js"></script> -->
+    <script src="./assets/js/swiper-bundle.min.js"></script>
+    <script src="./assets/js/gsap.min.js"></script>
+    <script src="./assets/js/ScrollTrigger.min.js"></script>
     <!-- <script src="./assets/js/lenis.min.js"></script> -->
-    <!-- <script src="./assets/js/jquery.touchSwipe.min.js"></script> -->
-    <script src="./assets/js/fullpage.min.js"></script>
-    <script src="./assets/js/fullpage.extensions.min.js"></script>
-    <script src="./assets/js/main.js"></script>
   </head>
-  <body class="fixed  size-full overflow-hidden">
-    <section id="aboutUs" class="era-section absolute bg-blue-200 horiz">about us</section>
-    <section id="contactUs" class="era-section absolute bg-green-100 vertical">contact us</section>
-    <section id="contactU" class="era-section absolute bg-green-100 vertical">contact us</section>
-    <section id="home" class="era-section absolute active bg-red-300">home</section>
-    <section id="projects" class="era-section absolute bg-orange-200 vertical">projects</section>
-    <section id="about" class="era-section absolute bg-pink-400 horiz">about</section>
+  <body class="h-svh">
+    <div class="swiper verticalSwiper  h-full">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bg-red-100 !mx-auto !w-[83%]">vertical Slide 1</div>
+        <div class="swiper-slide">
+          <div class="swiper horizSwiper size-full">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide bg-green-100">horiz Slide 1</div>
+              <div class="swiper-slide bg-blue-400">horiz Slide 2</div>
+              <div class="swiper-slide bg-orange-700">horiz Slide 3</div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide bg-red-800 !w-[83%] !mx-auto">vertical Slide 3</div>
+        <div class="swiper-slide bg-green-800 !w-[83%] !mx-auto">vertical Slide 4</div>
+      </div>
+    </div>
+    <script src="./assets/js/main.js"></script>
   </body>
-</html>
+  </html>
+  
