@@ -182,6 +182,10 @@ $(document).ready(function () {
   // Function to set the styles
   function setVerticalSlideStyles(activeIndex) {
     verticalSections.forEach((section, index) => {
+      // let element = $(section).hasClass("horiz")
+      //   ? $(section).find(".horizSwiper .swiper-slide-active")
+      //   : section;
+
       if (index === activeIndex) {
         gsap.to(section, {
           duration: 1,
@@ -192,7 +196,7 @@ $(document).ready(function () {
       } else {
         gsap.to(section, {
           rotationY: -30,
-          duration: 0,
+          duration: 1,
           opacity: 0.8,
           ease: "power2.out",
         });
@@ -211,7 +215,7 @@ $(document).ready(function () {
       } else {
         gsap.to(section, {
           rotationX: -30,
-          duration: 0,
+          duration: 1,
           opacity: 0.8,
           ease: "power2.out",
         });

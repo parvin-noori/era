@@ -711,8 +711,17 @@
   .place-content-center {
     place-content: center;
   }
+  .\!overflow-visible {
+    overflow: visible !important;
+  }
   .overflow-hidden {
     overflow: hidden;
+  }
+  .overflow-visible {
+    overflow: visible;
+  }
+  .\!overflow-x-visible {
+    overflow-x: visible !important;
   }
   .border {
     border-style: var(--tw-border-style);
