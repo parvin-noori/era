@@ -569,6 +569,12 @@
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
+  .z-0 {
+    z-index: 0;
+  }
+  .z-10 {
+    z-index: 10;
+  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -763,6 +769,12 @@
   .bg-red-800 {
     background-color: var(--color-red-800);
   }
+  .object-cover {
+    object-fit: cover;
+  }
+  .text-white {
+    color: var(--color-white);
+  }
   .underline {
     text-decoration-line: underline;
   }
@@ -800,6 +812,12 @@
   }
   .backface-hidden {
     backface-visibility: hidden;
+  }
+  .perspective-dramatic {
+    perspective: var(--perspective-dramatic);
+  }
+  .perspective-normal {
+    perspective: var(--perspective-normal);
   }
 }
 @keyframes spin {

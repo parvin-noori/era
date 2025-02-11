@@ -106,6 +106,9 @@ $(document).ready(function () {
   const verticalSections = gsap.utils.toArray(
     ".verticalSwiper > .swiper-wrapper  > .swiper-slide"
   );
+  const verticalBgSections = gsap.utils.toArray(
+    ".verticalSwiper > .swiper-wrapper  > .swiper-slide > img.bg-img"
+  );
   const horizentalSections = gsap.utils.toArray(
     ".horizSwiper > .swiper-wrapper  > .swiper-slide"
   );
@@ -186,11 +189,21 @@ $(document).ready(function () {
       //   ? $(section).find(".horizSwiper .swiper-slide-active")
       //   : section;
 
+      let bgImg = $(section).hasClass("horiz")
+        ? $(section).find(".horizSwiper .swiper-slide-active img.bg-img")
+        : $(section).find("> img.bg-img");
+
+
       if (index === activeIndex) {
         gsap.to(section, {
           duration: 1,
           opacity: 1,
           rotationY: 0,
+          ease: "power2.out",
+        });
+        gsap.to(bgImg, {
+          duration: 1,
+          rotationX: 0,
           ease: "power2.out",
         });
       } else {
@@ -199,17 +212,50 @@ $(document).ready(function () {
           duration: 1,
           opacity: 0.8,
           ease: "power2.out",
+          perspective: 100,
+        });
+        gsap.to(bgImg, {
+          // rotationX: -3,
+          duration: 1,
+          ease: "power2.out",
         });
       }
     });
+
+    // verticalBgSections.forEach((section, index) => {
+    //   if (index === activeIndex) {
+    //     gsap.to(section, {
+    //       duration: 1,
+    //       rotationX: 0,
+    //       ease: "power2.out",
+    //     });
+    //   } else {
+    //     gsap.to(section, {
+    //       rotationX: -3,
+    //       duration: 1,
+    //       ease: "power2.out",
+    //     });
+    //   }
+    // });
   }
+
   function setHorizentalSlideStyles(activeIndex) {
     horizentalSections.forEach((section, index) => {
+      let bgImg = $(section).find("> img.bg-img");
+      console.log(bgImg)
+
       if (index === activeIndex) {
         gsap.to(section, {
           duration: 1,
           opacity: 1,
           rotationX: 0,
+          perspective: 100,
+          ease: "power2.out",
+          // position:"relative",
+        });
+        gsap.to(bgImg, {
+          duration: 1,
+          rotationY: 0,
           ease: "power2.out",
         });
       } else {
@@ -217,6 +263,13 @@ $(document).ready(function () {
           rotationX: -30,
           duration: 1,
           opacity: 0.8,
+          ease: "power2.out",
+          perspective: 100,
+          // position:"fixed",
+        });
+        gsap.to(bgImg, {
+          // rotationY: -3,
+          duration: 1,
           ease: "power2.out",
         });
       }
