@@ -116,7 +116,7 @@ $(document).ready(function () {
   var horizSwiper = new Swiper(".horizSwiper", {
     spaceBetween: 50,
     initialSlide: 1,
-    allowTouchMove: false,
+    // allowTouchMove: false,
     slidesPerView: 1.2,
     centeredSlides: true,
     spaceBetween: 50,
@@ -193,7 +193,6 @@ $(document).ready(function () {
         ? $(section).find(".horizSwiper .swiper-slide-active img.bg-img")
         : $(section).find("> img.bg-img");
 
-
       if (index === activeIndex) {
         gsap.to(section, {
           duration: 1,
@@ -201,11 +200,17 @@ $(document).ready(function () {
           rotationY: 0,
           ease: "power2.out",
         });
-        gsap.to(bgImg, {
-          duration: 1,
-          rotationX: 0,
-          ease: "power2.out",
-        });
+        // gsap.fromTo(
+        //   bgImg,
+        //   {
+        //     rotationX: -3,
+        //     duration: 1,
+        //   },
+        //   {
+        //     duration: 1,
+        //     rotationX: 0,
+        //   }
+        // );
       } else {
         gsap.to(section, {
           rotationY: -30,
@@ -213,11 +218,6 @@ $(document).ready(function () {
           opacity: 0.8,
           ease: "power2.out",
           perspective: 100,
-        });
-        gsap.to(bgImg, {
-          // rotationX: -3,
-          duration: 1,
-          ease: "power2.out",
         });
       }
     });
@@ -242,7 +242,7 @@ $(document).ready(function () {
   function setHorizentalSlideStyles(activeIndex) {
     horizentalSections.forEach((section, index) => {
       let bgImg = $(section).find("> img.bg-img");
-      console.log(bgImg)
+      console.log(bgImg);
 
       if (index === activeIndex) {
         gsap.to(section, {
@@ -253,11 +253,17 @@ $(document).ready(function () {
           ease: "power2.out",
           // position:"relative",
         });
-        gsap.to(bgImg, {
-          duration: 1,
-          rotationY: 0,
-          ease: "power2.out",
-        });
+        // gsap.fromTo(
+        //   bgImg,
+        //   {
+        //     rotationY: -3,
+        //     duration: 1,
+        //   },
+        //   {
+        //     duration: 1,
+        //     rotationY: 0,
+        //   }
+        // );
       } else {
         gsap.to(section, {
           rotationX: -30,
@@ -266,11 +272,6 @@ $(document).ready(function () {
           ease: "power2.out",
           perspective: 100,
           // position:"fixed",
-        });
-        gsap.to(bgImg, {
-          // rotationY: -3,
-          duration: 1,
-          ease: "power2.out",
         });
       }
     });
