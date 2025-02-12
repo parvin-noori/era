@@ -14,62 +14,104 @@
     <script src="./assets/js/ScrollTrigger.min.js"></script>
     <!-- <script src="./assets/js/lenis.min.js"></script> -->
   </head>
-  <body class="h-svh">
+  <body class="h-svh bg-black">
     <div class="swiper verticalSwiper h-full">
       <div class="swiper-wrapper">
-        <div class="swiper-slide !mx-auto !w-[83%]">
+        <div class="swiper-slide !mx-auto" data-hash="slide1">
+          <div class="content size-full grid place-content-center">
+            <img
+              src="./assets/imgs/Untitled-1.webp"
+              alt=""
+              class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
+            />
+            <span class="text-white relative">vertical Slide 1</span>
+          </div>
+        </div>
+        <!-- <div class="swiper-slide lg:!hidden">
+          <div class="content size-full grid place-content-center">
           <img
             src="./assets/imgs/Untitled-1.webp"
             alt=""
-            class="size-full absolute inset-0 object-cover bg-img"
+            class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
           />
-          <span class="text-white relative">vertical Slide 1</span>
+          <span class="text-white relative">horiz Slide 1</span>
+          </div>
         </div>
-        <div class="swiper-slide horiz">
+        <div class="swiper-slide lg:!hidden">
+          <div class="content size-full grid place-content-center">
+          <img
+            src="./assets/imgs/Untitled-1.webp"
+            alt=""
+            class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
+          />
+          <span class="text-white relative">horiz Slide 2</span>
+          </div>
+        </div>
+        <div class="swiper-slide lg:!hidden">
+          <div class="content size-full grid place-content-center">
+          <img
+            src="./assets/imgs/Untitled-1.webp"
+            alt=""
+            class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
+          />
+          <span class="text-white relative">horiz Slide 3</span>
+          </div>
+        </div> -->
+        <div class="swiper-slide horiz" data-hash="slide2">
           <div class="swiper horizSwiper size-full !overflow-visible">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
+                <div class="content size-full grid place-content-center">
                 <img
                   src="./assets/imgs/Untitled-1.webp"
                   alt=""
-                  class="size-full absolute inset-0 object-cover bg-img"
+                  class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
                 />
                 <span class="text-white relative">horiz Slide 1</span>
+                </div>
               </div>
               <div class="swiper-slide">
+                <div class="content size-full grid place-content-center">
                 <img
                   src="./assets/imgs/Untitled-1.webp"
                   alt=""
-                  class="size-full absolute inset-0 object-cover bg-img"
+                  class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
                 />
                 <span class="text-white relative">horiz Slide 2</span>
+                </div>
               </div>
-              <div class="swiper-slide ">
+              <div class="swiper-slide">
+                <div class="content size-full grid place-content-center">
                 <img
                   src="./assets/imgs/Untitled-1.webp"
                   alt=""
-                  class="size-full absolute inset-0 object-cover bg-img"
+                  class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
                 />
                 <span class="text-white relative">horiz Slide 3</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="swiper-slide  !w-[83%] !mx-auto">
+        <div class="swiper-slide !mx-auto" data-hash="slide3">
+          <div class="content size-full grid place-content-center">
           <img
             src="./assets/imgs/Untitled-1.webp"
             alt=""
-            class="size-full absolute inset-0 object-cover bg-img"
+            class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
           />
           <span class="text-white relative">vertical Slide 3 </span>
+          </div>
         </div>
-        <div class="swiper-slide  !w-[83%] !mx-auto">
+        <div class="swiper-slide !mx-auto" data-hash="slide4">
+          <div class="content size-full grid place-content-center">
           <img
             src="./assets/imgs/Untitled-1.webp"
             alt=""
-            class="size-full absolute inset-0 object-cover bg-img"
+            class="size-full absolute inset-0 object-cover bg-img bg-mask-image"
           />
           <span class="text-white relative">vertical Slide 4</span>
+          </div>
         </div>
       </div>
     </div>

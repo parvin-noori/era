@@ -116,35 +116,45 @@ $(document).ready(function () {
   var horizSwiper = new Swiper(".horizSwiper", {
     spaceBetween: 50,
     initialSlide: 1,
-    // allowTouchMove: false,
-    slidesPerView: 1.2,
+    allowTouchMove: true,
+    speed: 1500,
+    // slidesPerView: 1.2,
     centeredSlides: true,
-    spaceBetween: 50,
     slideToClickedSlide: true,
     on: {
       init: function () {
-        setHorizentalSlideStyles(this.activeIndex);
+        setHorizentalSlideStyles(this.activeIndex, this.previousIndex);
       },
       slideChange: function () {
-        setHorizentalSlideStyles(this.activeIndex);
+        setHorizentalSlideStyles(this.activeIndex, this.previousIndex);
       },
     },
   });
 
   var verticalSwiper = new Swiper(".verticalSwiper", {
     direction: "vertical",
-    spaceBetween: 50,
     mousewheel: true,
     centeredSlides: true,
-    slidesPerView: 1.5,
+    // slidesPerView: 1.5,
     initialSlide: 1,
+
     slideToClickedSlide: true,
+    hashNavigation: true,
+    speed: 1500,
+    breakpoints: {
+      0: {
+        spaceBetween: 10,
+      },
+      992: {
+        spaceBetween: 50,
+      },
+    },
     on: {
       init: function () {
-        setVerticalSlideStyles(this.activeIndex);
+        setVerticalSlideStyles(this.activeIndex, this.previousIndex);
       },
       slideChange: function (e) {
-        setVerticalSlideStyles(this.activeIndex);
+        setVerticalSlideStyles(this.activeIndex, this.previousIndex);
       },
     },
   });
@@ -183,38 +193,65 @@ $(document).ready(function () {
   }
 
   // Function to set the styles
-  function setVerticalSlideStyles(activeIndex) {
+  function setVerticalSlideStyles(activeIndex, previousIndex) {
     verticalSections.forEach((section, index) => {
       // let element = $(section).hasClass("horiz")
       //   ? $(section).find(".horizSwiper .swiper-slide-active")
       //   : section;
 
-      let bgImg = $(section).hasClass("horiz")
-        ? $(section).find(".horizSwiper .swiper-slide-active img.bg-img")
-        : $(section).find("> img.bg-img");
+      let contentSlide = $(section).hasClass("horiz")
+        ? $(section).find(".horizSwiper .swiper-slide-active .content")
+        : $(section).find("> .content");
+
+      if (activeIndex > previousIndex) {
+        gsap.fromTo(
+          contentSlide,
+          {
+            rotationX: 5,
+            ease: "sine.out",
+            // scale:0.9,
+            // y:50,
+            duration: 2,
+          },
+          {
+            duration: 2,
+            ease: "sine.out",
+            rotationX: 0,
+            // y:0,
+            // scale:1,
+          }
+        );
+      } else if (activeIndex < previousIndex) {
+        gsap.fromTo(
+          contentSlide,
+          {
+            rotationX: 5,
+            ease: "ease.out2",
+            // scale:0.9,
+            duration: 2,
+            // y:50,
+          },
+          {
+            duration: 2,
+            ease: "sine.out",
+            rotationX: 0,
+            // y:0,
+            // scale:1,
+          }
+        );
+      }
 
       if (index === activeIndex) {
         gsap.to(section, {
-          duration: 1,
+          duration: 2,
           opacity: 1,
-          rotationY: 0,
+          // rotationY: 0,
           ease: "power2.out",
         });
-        // gsap.fromTo(
-        //   bgImg,
-        //   {
-        //     rotationX: -3,
-        //     duration: 1,
-        //   },
-        //   {
-        //     duration: 1,
-        //     rotationX: 0,
-        //   }
-        // );
       } else {
         gsap.to(section, {
-          rotationY: -30,
-          duration: 1,
+          // rotationY: -30,
+          duration: 2,
           opacity: 0.8,
           ease: "power2.out",
           perspective: 100,
@@ -239,10 +276,47 @@ $(document).ready(function () {
     // });
   }
 
-  function setHorizentalSlideStyles(activeIndex) {
+  function setHorizentalSlideStyles(activeIndex, previousIndex) {
     horizentalSections.forEach((section, index) => {
-      let bgImg = $(section).find("> img.bg-img");
-      console.log(bgImg);
+      let contentSlide = $(section).find("> .content");
+
+      if (activeIndex > previousIndex) {
+        gsap.fromTo(
+          contentSlide,
+          {
+            rotationY: -3,
+            ease: "sine.out",
+            // scale:0.9,
+            x: 50,
+            duration: 2,
+          },
+          {
+            ease: "sine.out",
+            rotationY: 0,
+            // scale:1,
+            duration: 2,
+            x: 0,
+          }
+        );
+      } else if (activeIndex < previousIndex) {
+        gsap.fromTo(
+          contentSlide,
+          {
+            rotationY: 3,
+            ease: "ease.out2",
+            // scale:0.9,
+            duration: 2,
+            x: 50,
+          },
+          {
+            duration: 2,
+            ease: "sine.out",
+            rotationY: 0,
+            // scale:1,
+            x: 0,
+          }
+        );
+      }
 
       if (index === activeIndex) {
         gsap.to(section, {
@@ -254,14 +328,16 @@ $(document).ready(function () {
           // position:"relative",
         });
         // gsap.fromTo(
-        //   bgImg,
+        //   contentSlide,
         //   {
         //     rotationY: -3,
+        //     // scale:0.9,
         //     duration: 1,
         //   },
         //   {
         //     duration: 1,
         //     rotationY: 0,
+        //     // scale:1,
         //   }
         // );
       } else {
