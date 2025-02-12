@@ -639,10 +639,6 @@
     width: calc(var(--spacing) * 1);
     height: calc(var(--spacing) * 1);
   }
-  .size-\[80\%\] {
-    width: 80%;
-    height: 80%;
-  }
   .size-full {
     width: 100%;
     height: 100%;
@@ -653,38 +649,17 @@
   .h-11 {
     height: calc(var(--spacing) * 11);
   }
-  .h-11\/12 {
-    height: calc(11/12 * 100%);
-  }
-  .h-\[90vh\] {
-    height: 90vh;
-  }
-  .h-\[9\] {
-    height: 9;
-  }
   .h-full {
     height: 100%;
   }
   .h-svh {
     height: 100svh;
   }
-  .\!w-\[80\%\] {
-    width: 80% !important;
-  }
   .\!w-\[83\%\] {
     width: 83% !important;
   }
   .w-11 {
     width: calc(var(--spacing) * 11);
-  }
-  .w-11\/12 {
-    width: calc(11/12 * 100%);
-  }
-  .w-\[80\%\] {
-    width: 80%;
-  }
-  .w-\[full\] {
-    width: full;
   }
   .w-full {
     width: 100%;
