@@ -737,26 +737,6 @@
   .backface-hidden {
     backface-visibility: hidden;
   }
-  .lg\:\!block {
-    @media (width >= 64rem) {
-      display: block !important;
-    }
-  }
-  .lg\:\!hidden {
-    @media (width >= 64rem) {
-      display: none !important;
-    }
-  }
-  .lg\:block {
-    @media (width >= 64rem) {
-      display: block;
-    }
-  }
-  .lg\:hidden {
-    @media (width >= 64rem) {
-      display: none;
-    }
-  }
   .lg\:\!w-\[83\%\] {
     @media (width >= 64rem) {
       width: 83% !important;
