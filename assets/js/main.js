@@ -116,43 +116,36 @@ $(document).ready(function () {
   var horizSwiper = new Swiper(".horizSwiper", {
     spaceBetween: 50,
     initialSlide: 1,
-    allowTouchMove: true,
-    speed: 1500,
-    // slidesPerView: 1.2,
+    // allowTouchMove: false,
+    slidesPerView: 1.2,
     centeredSlides: true,
+    spaceBetween: 50,
     slideToClickedSlide: true,
     on: {
       init: function () {
-        setHorizentalSlideStyles(this.activeIndex, this.previousIndex);
+        setHorizentalSlideStyles(this.activeIndex);
       },
       slideChange: function () {
-        setHorizentalSlideStyles(this.activeIndex,this.previousIndex);
+        setHorizentalSlideStyles(this.activeIndex);
       },
     },
   });
 
   var verticalSwiper = new Swiper(".verticalSwiper", {
     direction: "vertical",
+    spaceBetween: 50,
     mousewheel: true,
     centeredSlides: true,
-    // slidesPerView: 1.5,
-    // initialSlide: 1,
+    slidesPerView: 1.5,
+    initialSlide: 1,
+    speed: 1000,
     slideToClickedSlide: true,
-    speed: 1500,
-    breakpoints: {
-      0: {
-        spaceBetween: 10,
-      },
-      992: {
-        spaceBetween: 50,
-      },
-    },
     on: {
       init: function () {
-        setVerticalSlideStyles(this.activeIndex, this.previousIndex);
+        setVerticalSlideStyles(this);
       },
       slideChange: function (e) {
-        setVerticalSlideStyles(this.activeIndex, this.previousIndex);
+        setVerticalSlideStyles(this);
       },
     },
   });
@@ -191,69 +184,92 @@ $(document).ready(function () {
   }
 
   // Function to set the styles
-  function setVerticalSlideStyles(activeIndex,previousIndex) {
+  function setVerticalSlideStyles(swiper) {
+    const activeIndex = swiper.activeIndex;
+    const previousIndex = swiper.previousIndex;
+    const slides = swiper.slides;
     verticalSections.forEach((section, index) => {
       // let element = $(section).hasClass("horiz")
       //   ? $(section).find(".horizSwiper .swiper-slide-active")
       //   : section;
 
-      let contentSlide = $(section).hasClass("horiz")
-      ? $(section).find(".horizSwiper .swiper-slide-active .content")
-      : $(section).find("> .content");
+      let content = $(section).hasClass("horiz")
+        ? $(section).find(".horizSwiper .swiper-slide-active .content")
+        : $(section).find("> .content");
 
-
-      if (activeIndex > previousIndex) {
-        gsap.fromTo(
-          contentSlide,
-          {
-            rotationX: 5,
-            ease: "sine.out",
-            // scale:0.9,
-            duration: 2,
-          },
-          {
-            duration: 2,
-            ease: "sine.out",
-            rotationX: 0,
-            // scale:1,
-          }
-        );
-      } else if (activeIndex < previousIndex) {
-        gsap.fromTo(
-          contentSlide,
-          {
-            rotationX: -5,
-            ease: "ease.out2",
-            // scale:0.9,
-            duration: 2,
-          },
-          {
-            duration: 2,
-            ease: "sine.out",
-            rotationX: 0,
-            // scale:1,
-          }
-        );
-      }
-
-    
+      let bgImg = $(section).hasClass("horiz")
+        ? $(section).find(".horizSwiper .swiper-slide-active .content .bg-img")
+        : $(section).find("> .bg-img");
 
       if (index === activeIndex) {
-        gsap.to(section, {
-          duration: 2,
+        const prevSlide = slides[previousIndex];
+        const currentSlide = slides[activeIndex];
+        const nextSlide = slides[activeIndex + 1];
+
+        let prevContent = $(prevSlide).hasClass("horiz")
+          ? $(prevSlide).find(".horizSwiper .swiper-slide-active .content")
+          : $(prevSlide).find("> .content");
+
+        let nextContent = $(nextSlide).hasClass("horiz")
+          ? $(nextSlide).find(".horizSwiper .swiper-slide-active .content")
+          : $(nextSlide).find("> .content");
+
+        gsap.to(prevContent, {
+          duration: 1,
           opacity: 1,
-          // rotationY: 0,
+          rotationX: 3,
           ease: "power2.out",
         });
-       
+        gsap.to(nextContent, {
+          duration: 1,
+          opacity: 1,
+          rotationX: -3,
+          ease: "power2.out",
+        });
+        gsap.to(content, {
+          duration: 1,
+          opacity: 1,
+          rotationX: 0,
+          ease: "power2.out",
+        });
+
+        gsap.to(section, {
+          duration: 1,
+          opacity: 1,
+          rotationY: 0,
+          ease: "power2.out",
+        });
+        // gsap.to(content, {
+        //   duration: 1,
+        //   rotationX: 0,
+        //   ease: "power2.out",
+        // });
+        gsap.to(bgImg, {
+          duration: 1,
+          ease: "power2.out",
+          scale: 1,
+        });
       } else {
         gsap.to(section, {
-          // rotationY: -30,
-          duration: 2,
+          rotationY: -30,
+          // duration: 1,
           opacity: 0.8,
           ease: "power2.out",
           perspective: 100,
         });
+        gsap.to(bgImg, {
+          duration: 1,
+          ease: "power2.out",
+          scale: 0.9,
+        });
+
+        // gsap.to(section, {
+        //   rotationY: -30,
+        //   duration: 1,
+        //   opacity: 0.8,
+        //   ease: "power2.out",
+        //   perspective: 100,
+        // });
       }
     });
 
@@ -274,71 +290,17 @@ $(document).ready(function () {
     // });
   }
 
-  function setHorizentalSlideStyles(activeIndex,previousIndex) {
+  function setHorizentalSlideStyles(activeIndex) {
     horizentalSections.forEach((section, index) => {
-      let contentSlide = $(section).find("> .content");
-
-
-      if (activeIndex > previousIndex) {
-        gsap.fromTo(
-          contentSlide,
-          {
-            rotationY: -3,
-            ease: "sine.out",
-            // scale:0.9,
-            x:50,
-            duration: 2,
-          },
-          {
-            ease: "sine.out",
-            rotationY: 0,
-            // scale:1,
-            duration: 2,
-            x:0
-          }
-        );
-      } else if (activeIndex < previousIndex) {
-        gsap.fromTo(
-          contentSlide,
-          {
-            rotationY: 3,
-            ease: "ease.out2",
-            // scale:0.9,
-            duration: 2,
-            x:50
-          },
-          {
-            duration: 2,
-            ease: "sine.out",
-            rotationY: 0,
-            // scale:1,
-            x:0
-          }
-        );
-      }
-
       if (index === activeIndex) {
         gsap.to(section, {
           duration: 1,
           opacity: 1,
           rotationX: 0,
-          perspective: 100,
           ease: "power2.out",
+          perspective: 100,
           // position:"relative",
         });
-        // gsap.fromTo(
-        //   contentSlide,
-        //   {
-        //     rotationY: -3,
-        //     // scale:0.9,
-        //     duration: 1,
-        //   },
-        //   {
-        //     duration: 1,
-        //     rotationY: 0,
-        //     // scale:1,
-        //   }
-        // );
       } else {
         gsap.to(section, {
           rotationX: -30,
