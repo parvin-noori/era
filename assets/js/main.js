@@ -202,36 +202,36 @@ $(document).ready(function () {
         : $(section).find("> .bg-img");
 
       if (index === activeIndex) {
-        const prevSlide = slides[previousIndex];
-        const currentSlide = slides[activeIndex];
-        const nextSlide = slides[activeIndex + 1];
+        // const prevSlide = slides[previousIndex];
+        // const currentSlide = slides[activeIndex];
+        // const nextSlide = slides[activeIndex + 1];
 
-        let prevContent = $(prevSlide).hasClass("horiz")
-          ? $(prevSlide).find(".horizSwiper .swiper-slide-active .content")
-          : $(prevSlide).find("> .content");
+        // let prevContent = $(prevSlide).hasClass("horiz")
+        //   ? $(prevSlide).find(".horizSwiper .swiper-slide-active .content")
+        //   : $(prevSlide).find("> .content");
 
-        let nextContent = $(nextSlide).hasClass("horiz")
-          ? $(nextSlide).find(".horizSwiper .swiper-slide-active .content")
-          : $(nextSlide).find("> .content");
+        // let nextContent = $(nextSlide).hasClass("horiz")
+        //   ? $(nextSlide).find(".horizSwiper .swiper-slide-active .content")
+        //   : $(nextSlide).find("> .content");
 
-        gsap.to(prevContent, {
-          duration: 1,
-          opacity: 1,
-          rotationX: 3,
-          ease: "power2.out",
-        });
-        gsap.to(nextContent, {
-          duration: 1,
-          opacity: 1,
-          rotationX: -3,
-          ease: "power2.out",
-        });
-        gsap.to(content, {
-          duration: 1,
-          opacity: 1,
-          rotationX: 0,
-          ease: "power2.out",
-        });
+        // gsap.to(prevContent, {
+        //   duration: 1,
+        //   opacity: 1,
+        //   rotationX: 3,
+        //   ease: "power2.out",
+        // });
+        // gsap.to(nextContent, {
+        //   duration: 1,
+        //   opacity: 1,
+        //   rotationX: -3,
+        //   ease: "power2.out",
+        // });
+        // gsap.to(content, {
+        //   duration: 1,
+        //   opacity: 1,
+        //   rotationX: 0,
+        //   ease: "power2.out",
+        // });
 
         gsap.to(section, {
           duration: 1,
