@@ -113,39 +113,72 @@ $(document).ready(function () {
     ".horizSwiper > .swiper-wrapper  > .swiper-slide"
   );
 
-  var horizSwiper = new Swiper(".horizSwiper", {
-    spaceBetween: 50,
-    initialSlide: 1,
-    // allowTouchMove: false,
-    slidesPerView: 1.2,
-    centeredSlides: true,
-    spaceBetween: 50,
+  let firstSlide;
+  let lastSlide;
+
+  var verticalSwiper = new Swiper(".verticalSwiper", {
+    direction: "vertical",
+    mousewheel: true,
+    updateOnWindowResize: true,
+    slidesPerView: 1.5,
+    speed: 1000,
     slideToClickedSlide: true,
+    breakpoints: {
+      0: {
+        spaceBetween: 20,
+      },
+      992: {
+        initialSlide: 1,
+        spaceBetween: 50,
+        centeredSlides: true,
+      },
+    },
     on: {
       init: function () {
-        setHorizentalSlideStyles(this.activeIndex);
+        if (window.innerWidth > 992) {
+          setVerticalSlideStyles(this);
+        }
       },
-      slideChange: function () {
-        setHorizentalSlideStyles(this.activeIndex);
+      slideChange: function (e) {
+        if (window.innerWidth > 992) {
+          setVerticalSlideStyles(this);
+        }
       },
     },
   });
 
-  var verticalSwiper = new Swiper(".verticalSwiper", {
-    direction: "vertical",
+  var  horizSwiper = new Swiper(".horizSwiper", {
     spaceBetween: 50,
-    mousewheel: true,
-    centeredSlides: true,
-    slidesPerView: 1.5,
     initialSlide: 1,
-    speed: 1000,
+    // allowTouchMove: false,
+    slidesPerView: 1.2,
+
     slideToClickedSlide: true,
+    updateOnWindowResize: true,
+    breakpoints: {
+      0: {
+        direction: "vertical",
+      },
+      992: {
+        spaceBetween: 50,
+        direction: "horizontal",
+        centeredSlides: true,
+      },
+    },
     on: {
       init: function () {
-        setVerticalSlideStyles(this);
+        firstSlide = this.slides[0];
+        lastSlide = this.slides[2];
+        if (window.innerWidth < 992) {
+          configHorizSlides(this);
+        } else {
+          setHorizentalSlideStyles(this.activeIndex);
+        }
       },
-      slideChange: function (e) {
-        setVerticalSlideStyles(this);
+      slideChange: function () {
+        if (window.innerWidth > 992) {
+          setHorizentalSlideStyles(this.activeIndex);
+        }
       },
     },
   });
@@ -312,5 +345,11 @@ $(document).ready(function () {
         });
       }
     });
+  }
+
+  function configHorizSlides(swiper) {
+    swiper.removeSlide([0, 2]);
+    verticalSwiper.addSlide(1, firstSlide);
+    verticalSwiper.addSlide(3, lastSlide);
   }
 });
