@@ -6,6 +6,10 @@ $(document).ready(function () {
     ".horizSwiper > .swiper-wrapper  > .swiper-slide"
   );
 
+  let verticalSwipeSlide = $(
+    ".verticalSwiper > .swiper-wrapper>  .swiper-slide"
+  );
+
   let firstSlide;
   let lastSlide;
 
@@ -76,13 +80,12 @@ $(document).ready(function () {
     },
   });
 
-  verticalSections.forEach((section) => {
-    $(section).on("click", handleSlideClick);
+  verticalSwipeSlide.each(function (e) {
+    $(this).on("click", handleSlideClick);
   });
-
-  // ----------------------------------------------------------
+  ///////////////////////////////////////////////////////////////////
   // Function to handle the click event on a slide
-  // ----------------------------------------------------------
+  ///////////////////////////////////////////////////////////////////
   function handleSlideClick(e) {
     e.stopPropagation();
 
@@ -94,7 +97,7 @@ $(document).ready(function () {
       e.target
     );
 
-    const verticalSlideIndex = verticalSections.index(this);
+    const verticalSlideIndex = verticalSwipeSlide.index(this);
 
     hasHorizSlider
       ? verticalSwiper.slideTo(horizantalClickedSlideIndex)
@@ -103,14 +106,14 @@ $(document).ready(function () {
 
   // Function to get the index of the clicked horizontal slide
   function getHorizontalClickedSlideIndex(clickedTarget) {
-    return verticalSections.index(
+    return verticalSwipeSlide.index(
       $(clickedTarget).closest(".horizSwiper").parent()
     );
   }
 
-  // ----------------------------------------------------------
-  //  Function to set styles for vertical slides based on active index
-  // ----------------------------------------------------------
+  ///////////////////////////////////////////////////////////////////
+  // Function to set styles for vertical slides based on active index
+  ///////////////////////////////////////////////////////////////////
   function setVerticalSlideStyles(swiper) {
     const activeIndex = swiper.activeIndex;
 
@@ -150,9 +153,9 @@ $(document).ready(function () {
     });
   }
 
-  // ----------------------------------------------------------
-  //  Function to set styles for horizontal slides based on active index
-  // ----------------------------------------------------------
+  ///////////////////////////////////////////////////////////////////
+  // // Function to set styles for horizontal slides based on active index
+  ///////////////////////////////////////////////////////////////////
 
   function setHorizentalSlideStyles(activeIndex) {
     horizentalSections.forEach((section, index) => {
@@ -166,7 +169,7 @@ $(document).ready(function () {
           perspective: 100,
         });
       } else {
-        // Apply inactive styles to other sections
+        // Apply active styles to the current section
         gsap.to(section, {
           rotationX: -30,
           duration: 1,
@@ -178,19 +181,15 @@ $(document).ready(function () {
     });
   }
 
-  // -------------------------------------------------------
-  // Function to configure horizontal slides and adjust vertical slides
-  // --------------------------------------------------------
-
-  function configHorizSlides(horizontalSwiper) {
-    horizontalSwiper.removeSlide([0, 2]);
+  function configHorizSlides(swiper) {
+    swiper.removeSlide([0, 2]);
     verticalSwiper.addSlide(1, firstSlide);
     verticalSwiper.addSlide(3, lastSlide);
   }
 
-  // -------------------------
-  // initialCursor
-  // -------------------------
+  ///////////////////////////////////////////////////////////////////
+  // Function to configure horizontal slides and adjust vertical slides
+  ///////////////////////////////////////////////////////////////////
   function initialCursor() {
     const cursorDot = $(".era-cursor-dot");
     const cursorBound = $(".era-cursor-bound");
@@ -206,6 +205,7 @@ $(document).ready(function () {
       const x = e.clientX;
       const y = e.clientY;
 
+      // Animate dot with lerp for smooth movement
       gsap.to(cursorDot, {
         x: x,
         y: y,
@@ -214,6 +214,7 @@ $(document).ready(function () {
         overwrite: "auto",
       });
 
+      // Animate bound with slower lerp
       gsap.to(cursorBound, {
         x: x,
         y: y,

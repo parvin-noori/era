@@ -706,6 +706,18 @@
   .bg-blue-600 {
     background-color: var(--color-blue-600);
   }
+  .bg-green-800 {
+    background-color: var(--color-green-800);
+  }
+  .bg-green-950 {
+    background-color: var(--color-green-950);
+  }
+  .bg-orange-700 {
+    background-color: var(--color-orange-700);
+  }
+  .bg-orange-900 {
+    background-color: var(--color-orange-900);
+  }
   .object-cover {
     object-fit: cover;
   }
