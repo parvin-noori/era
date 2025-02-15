@@ -28,7 +28,7 @@ $(document).ready(function () {
         spaceBetween: 20,
       },
       992: {
-        initialSlide: 1,
+        initialSlide: 1.5,
         spaceBetween: 50,
       },
     },

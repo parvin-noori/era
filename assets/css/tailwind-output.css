@@ -822,6 +822,26 @@
       display: block;
     }
   }
+  .lg\:\!h-\[63\%\] {
+    @media (width >= 64rem) {
+      height: 63% !important;
+    }
+  }
+  .lg\:\!h-\[70\%\] {
+    @media (width >= 64rem) {
+      height: 70% !important;
+    }
+  }
+  .lg\:\!h-\[73\%\] {
+    @media (width >= 64rem) {
+      height: 73% !important;
+    }
+  }
+  .lg\:\!h-\[80\%\] {
+    @media (width >= 64rem) {
+      height: 80% !important;
+    }
+  }
   .lg\:\!h-\[83\%\] {
     @media (width >= 64rem) {
       height: 83% !important;
