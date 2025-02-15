@@ -9,6 +9,9 @@ $(document).ready(function () {
   let verticalSwipeSlide = $(
     ".verticalSwiper > .swiper-wrapper>  .swiper-slide"
   );
+  let horizentalSwipeSlide = $(
+    ".horizSwiper > .swiper-wrapper>  .swiper-slide"
+  );
 
   let firstSlide;
   let lastSlide;
@@ -17,7 +20,7 @@ $(document).ready(function () {
     direction: "vertical",
     mousewheel: true,
     updateOnWindowResize: true,
-    slidesPerView: 1.5,
+    slidesPerView: 1,
     speed: 1000,
     slideToClickedSlide: true,
     breakpoints: {
@@ -27,7 +30,6 @@ $(document).ready(function () {
       992: {
         initialSlide: 1,
         spaceBetween: 50,
-        centeredSlides: true,
       },
     },
     on: {
@@ -45,19 +47,19 @@ $(document).ready(function () {
   });
 
   var horizSwiper = new Swiper(".horizSwiper", {
-    spaceBetween: 50,
-    initialSlide: 1,
     // allowTouchMove: false,
-    slidesPerView: 1.2,
+    slidesPerView: 1.1,
 
     slideToClickedSlide: true,
     updateOnWindowResize: true,
     breakpoints: {
       0: {
         direction: "vertical",
+        initialSlide: 0,
       },
       992: {
-        spaceBetween: 50,
+        initialSlide: 1,
+        // spaceBetween: 50,
         direction: "horizontal",
         centeredSlides: true,
       },
@@ -77,10 +79,21 @@ $(document).ready(function () {
           setHorizentalSlideStyles(this.activeIndex);
         }
       },
+      sliderFirstMove: function () {
+        // hideSlides(this);
+      },
+      tap: function () {
+        // hideSlides(this);
+        // gsap.to(slidesWrapper, {
+        //   xPercent: 88,
+        // });
+      },
     },
   });
 
-  verticalSwipeSlide.each(function (e) {
+
+
+  horizentalSwipeSlide.each(function (e) {
     $(this).on("click", handleSlideClick);
   });
   ///////////////////////////////////////////////////////////////////
@@ -90,24 +103,22 @@ $(document).ready(function () {
     e.stopPropagation();
 
     // Check if the clicked slide is inside a horizontal swiper
-    const hasHorizSlider =
-      $(e.target).closest(".horizSwiper").parent().length > 0;
+    const hasVerticalSlider =
+      $(e.target).closest(".verticalSwiper").parent().length > 0;
 
-    const horizantalClickedSlideIndex = getHorizontalClickedSlideIndex(
-      e.target
-    );
+    const horizantalClickedSlideIndex = getVerticalClickedSlideIndex(e.target);
 
-    const verticalSlideIndex = verticalSwipeSlide.index(this);
+    const horizentalSlideIndex = horizentalSwipeSlide.index(this);
 
-    hasHorizSlider
-      ? verticalSwiper.slideTo(horizantalClickedSlideIndex)
-      : verticalSwiper.slideTo(verticalSlideIndex);
+    hasVerticalSlider
+      ? horizSwiper.slideTo(horizantalClickedSlideIndex)
+      : horizSwiper.slideTo(horizentalSlideIndex);
   }
 
   // Function to get the index of the clicked horizontal slide
-  function getHorizontalClickedSlideIndex(clickedTarget) {
-    return verticalSwipeSlide.index(
-      $(clickedTarget).closest(".horizSwiper").parent()
+  function getVerticalClickedSlideIndex(clickedTarget) {
+    return horizentalSwipeSlide.index(
+      $(clickedTarget).closest(".verticalSwiper").parent()
     );
   }
 
@@ -183,8 +194,8 @@ $(document).ready(function () {
 
   function configHorizSlides(swiper) {
     swiper.removeSlide([0, 2]);
-    verticalSwiper.addSlide(1, firstSlide);
-    verticalSwiper.addSlide(3, lastSlide);
+    verticalSwiper.addSlide(0, firstSlide);
+    verticalSwiper.addSlide(4, lastSlide);
   }
 
   ///////////////////////////////////////////////////////////////////
@@ -227,4 +238,42 @@ $(document).ready(function () {
     $(document).on("mousemove", moveCursor);
   }
   initialCursor();
+
+  // let endFixedSlide = $(".end-fixed-slide");
+  // let startFixedSlide = $(".start-fixed-slide");
+  // let slidesWrapper = $(".slides-wrapper");
+
+  // gsap.set(endFixedSlide, {
+  //   height: $(verticalSwiper.slides[0]).height(),
+  //   width: $(verticalSwiper.slides[0]).width(),
+  //   xPercent: 93,
+  //   rotationX: -30,
+  // });
+  // gsap.set(startFixedSlide, {
+  //   height: $(verticalSwiper.slides[0]).height(),
+  //   width: $(verticalSwiper.slides[0]).width(),
+  //   xPercent: -93,
+  //   rotationX: -30,
+  // });
+
+  // endFixedSlide.on("click", function () {
+  //   gsap.to(slidesWrapper, {
+  //     xPercent: -88,
+  //   });
+
+  //   gsap.to(endFixedSlide, {
+  //     rotationX: 0,
+  //     // scaleY: 1.2,
+  //   });
+  // });
+  // startFixedSlide.on("click", function () {
+  //   gsap.to(slidesWrapper, {
+  //     xPercent: 88,
+  //   });
+
+  //   gsap.to(startFixedSlide, {
+  //     rotationX: 0,
+  //     // scaleY: 1.2,
+  //   });
+  // });
 });

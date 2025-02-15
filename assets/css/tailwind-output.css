@@ -560,6 +560,18 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
+  .top-1 {
+    top: calc(var(--spacing) * 1);
+  }
+  .top-1\/2 {
+    top: calc(1/2 * 100%);
+  }
+  .right-0 {
+    right: calc(var(--spacing) * 0);
+  }
+  .left-0 {
+    left: calc(var(--spacing) * 0);
+  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -580,6 +592,9 @@
   }
   .\!mx-auto {
     margin-inline: auto !important;
+  }
+  .my-auto {
+    margin-block: auto;
   }
   .block {
     display: block;
@@ -654,12 +669,28 @@
     --tw-translate-x: calc(101% * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .-translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1/2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
   .-translate-y-\[102\%\] {
     --tw-translate-y: calc(102% * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .translate-x-\[101\%\] {
     --tw-translate-x: 101%;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * 1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .translate-y-1\/2 {
+    --tw-translate-y: calc(1/2 * 100%);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .translate-y-\[102\%\] {
@@ -674,6 +705,12 @@
   }
   .place-content-center {
     place-content: center;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
   }
   .\!overflow-visible {
     overflow: visible !important;
@@ -718,6 +755,12 @@
   .bg-orange-900 {
     background-color: var(--color-orange-900);
   }
+  .bg-red-700 {
+    background-color: var(--color-red-700);
+  }
+  .bg-red-800 {
+    background-color: var(--color-red-800);
+  }
   .object-cover {
     object-fit: cover;
   }
@@ -755,6 +798,15 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+  }
   .ease-out {
     --tw-ease: var(--ease-out);
     transition-timing-function: var(--ease-out);
@@ -770,9 +822,39 @@
       display: block;
     }
   }
+  .lg\:\!h-\[83\%\] {
+    @media (width >= 64rem) {
+      height: 83% !important;
+    }
+  }
+  .lg\:h-\[83\%\] {
+    @media (width >= 64rem) {
+      height: 83%;
+    }
+  }
   .lg\:\!w-\[83\%\] {
     @media (width >= 64rem) {
       width: 83% !important;
+    }
+  }
+  .lg\:w-\[83\%\] {
+    @media (width >= 64rem) {
+      width: 83%;
+    }
+  }
+  .lg\:w-\[85\%\] {
+    @media (width >= 64rem) {
+      width: 85%;
+    }
+  }
+  .lg\:w-\[95\%\] {
+    @media (width >= 64rem) {
+      width: 95%;
+    }
+  }
+  .lg\:w-full {
+    @media (width >= 64rem) {
+      width: 100%;
     }
   }
 }
@@ -999,6 +1081,10 @@
   inherits: false;
 }
 @property --tw-backdrop-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-duration {
   syntax: "*";
   inherits: false;
 }
