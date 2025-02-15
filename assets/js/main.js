@@ -91,8 +91,6 @@ $(document).ready(function () {
     },
   });
 
-
-
   horizentalSwipeSlide.each(function (e) {
     $(this).on("click", handleSlideClick);
   });
@@ -193,9 +191,11 @@ $(document).ready(function () {
   }
 
   function configHorizSlides(swiper) {
+    let lastSlideIndex = verticalSections.length + 1;
+    console.log(lastSlideIndex);
     swiper.removeSlide([0, 2]);
     verticalSwiper.addSlide(0, firstSlide);
-    verticalSwiper.addSlide(4, lastSlide);
+    verticalSwiper.addSlide(lastSlideIndex, lastSlide);
   }
 
   ///////////////////////////////////////////////////////////////////
@@ -239,41 +239,5 @@ $(document).ready(function () {
   }
   initialCursor();
 
-  // let endFixedSlide = $(".end-fixed-slide");
-  // let startFixedSlide = $(".start-fixed-slide");
-  // let slidesWrapper = $(".slides-wrapper");
-
-  // gsap.set(endFixedSlide, {
-  //   height: $(verticalSwiper.slides[0]).height(),
-  //   width: $(verticalSwiper.slides[0]).width(),
-  //   xPercent: 93,
-  //   rotationX: -30,
-  // });
-  // gsap.set(startFixedSlide, {
-  //   height: $(verticalSwiper.slides[0]).height(),
-  //   width: $(verticalSwiper.slides[0]).width(),
-  //   xPercent: -93,
-  //   rotationX: -30,
-  // });
-
-  // endFixedSlide.on("click", function () {
-  //   gsap.to(slidesWrapper, {
-  //     xPercent: -88,
-  //   });
-
-  //   gsap.to(endFixedSlide, {
-  //     rotationX: 0,
-  //     // scaleY: 1.2,
-  //   });
-  // });
-  // startFixedSlide.on("click", function () {
-  //   gsap.to(slidesWrapper, {
-  //     xPercent: 88,
-  //   });
-
-  //   gsap.to(startFixedSlide, {
-  //     rotationX: 0,
-  //     // scaleY: 1.2,
-  //   });
-  // });
+ 
 });
