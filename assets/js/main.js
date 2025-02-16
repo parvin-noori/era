@@ -13,8 +13,7 @@ $(document).ready(function () {
     ".horizSwiper > .swiper-wrapper>  .swiper-slide"
   );
 
-  let firstSlide;
-  let lastSlide;
+  let verticalSlideIndex;
 
   var verticalSwiper = new Swiper(".verticalSwiper", {
     direction: "vertical",
@@ -66,8 +65,6 @@ $(document).ready(function () {
     },
     on: {
       init: function () {
-        firstSlide = this.slides[0];
-        lastSlide = this.slides[2];
         if (window.innerWidth < 992) {
           configHorizSlides(this);
         } else {
@@ -79,16 +76,11 @@ $(document).ready(function () {
           setHorizentalSlideStyles(this.activeIndex);
         }
       },
-      sliderFirstMove: function () {
-        // hideSlides(this);
-      },
-      tap: function () {
-        // hideSlides(this);
-        // gsap.to(slidesWrapper, {
-        //   xPercent: 88,
-        // });
-      },
     },
+  });
+
+  window.addEventListener('resize', () => {
+    horizSwiper.update();
   });
 
   horizentalSwipeSlide.each(function (e) {
@@ -191,11 +183,28 @@ $(document).ready(function () {
   }
 
   function configHorizSlides(swiper) {
-    let lastSlideIndex = verticalSections.length + 1;
-    console.log(lastSlideIndex);
-    swiper.removeSlide([0, 2]);
-    verticalSwiper.addSlide(0, firstSlide);
-    verticalSwiper.addSlide(lastSlideIndex, lastSlide);
+    const allSlides = Array.from(swiper.slides);
+
+    swiper.slides.forEach((slide, index) => {
+      if ($(slide).hasClass("vertical")) {
+        verticalSlideIndex = index;
+      }
+    });
+
+    for (let i = swiper.slides.length - 1; i >= 0; i--) {
+      const slide = swiper.slides[i];
+      if (!$(slide).hasClass("vertical")) {
+        swiper.removeSlide(i); // Remove the slide if it doesn't have the "vertical" class
+      }
+    }
+
+    for (let i = 0; i < verticalSlideIndex; i++) {
+      verticalSwiper.addSlide(i, allSlides[i]); // Add slides before the vertical one
+    }
+
+    for (let i = verticalSlideIndex + 1; i < allSlides.length; i++) {
+      verticalSwiper.addSlide(verticalSwiper.slides.length, allSlides[i]); // Add slides after the vertical one
+    }
   }
 
   ///////////////////////////////////////////////////////////////////
@@ -238,6 +247,4 @@ $(document).ready(function () {
     $(document).on("mousemove", moveCursor);
   }
   initialCursor();
-
- 
 });
